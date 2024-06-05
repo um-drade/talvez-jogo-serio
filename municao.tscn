@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://btn438ndx21qt"]
+
+[ext_resource type="Texture2D" uid="uid://dete622tsufs" path="res://sprits/guns.png" id="1_expl0"]
+[ext_resource type="Script" path="res://spripts/municao.gd" id="1_qni1h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2q08x"]
+size = Vector2(16, 16)
+
+[node name="municao" type="Area2D"]
+script = ExtResource("1_qni1h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_expl0")
+hframes = 5
+vframes = 5
+frame = 23
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2q08x")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

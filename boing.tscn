@@ -1,0 +1,100 @@
+[gd_scene load_steps=16 format=3 uid="uid://dfs33ni4fif80"]
+
+[ext_resource type="Texture2D" uid="uid://crmog4n1rdvex" path="res://sprits/boioin.png" id="1_3yo3n"]
+[ext_resource type="Script" path="res://spripts/boing.gd" id="1_gvkg1"]
+[ext_resource type="AudioStream" uid="uid://dueqcyd2ud31w" path="res://sonds/boing-sound.mp3" id="3_xl5nu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6yqmg"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tbm3"]
+atlas = ExtResource("1_3yo3n")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhpsa"]
+atlas = ExtResource("1_3yo3n")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54osi"]
+atlas = ExtResource("1_3yo3n")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jih1o"]
+atlas = ExtResource("1_3yo3n")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phkqf"]
+atlas = ExtResource("1_3yo3n")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1206"]
+atlas = ExtResource("1_3yo3n")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34csn"]
+atlas = ExtResource("1_3yo3n")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tt5mf"]
+atlas = ExtResource("1_3yo3n")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm04s"]
+atlas = ExtResource("1_3yo3n")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngnrs"]
+atlas = ExtResource("1_3yo3n")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g1eq0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tbm3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhpsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54osi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jih1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phkqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1206")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34csn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tt5mf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm04s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngnrs")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="boing" type="Area2D"]
+script = ExtResource("1_gvkg1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6yqmg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_g1eq0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xl5nu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

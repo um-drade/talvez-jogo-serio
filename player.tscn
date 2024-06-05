@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://b557j8gcxel3x"]
+
+[ext_resource type="Script" path="res://spripts/player.gd" id="1_2gsg1"]
+[ext_resource type="Texture2D" uid="uid://c7fynatbrki3y" path="res://sprits/fumacina.png" id="2_i7nl8"]
+[ext_resource type="AudioStream" uid="uid://cnu8ugb7c1jfd" path="res://sonds/Concrete scrape loop .mp3" id="3_tmou7"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mrwt0"]
+polygon = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tjj8w"]
+size = Vector2(32, 32)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_51cal"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_c0q0o"]
+_data = [Vector2(0, 0.43956), 0.0, 0.0, 0, 0, Vector2(0.993333, 0), -2.67147, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7yqav"]
+curve = SubResource("Curve_c0q0o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tinwd"]
+lifetime_randomness = 0.65
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(7, 7, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -90.0
+angle_max = 90.0
+gravity = Vector3(0, -1000, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_7yqav")
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_2gsg1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="ColorRect"]
+position = Vector2(16, 16)
+occluder = SubResource("OccluderPolygon2D_mrwt0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tjj8w")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_51cal")
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_tinwd")
+texture = ExtResource("2_i7nl8")
+lifetime = 0.2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_tmou7")
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
