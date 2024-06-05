@@ -31,8 +31,7 @@ func _physics_process(delta):
 func _input(event):
 	var playerammo = get_node("/root/mundo/player").qntmunicao
 	if event.is_action_pressed("atira"):
-		if playerammo:
-			atira(playerammo)
+		atira(playerammo)
 
 func atira(quantidadedebala):
 	for i in range(5):
@@ -41,11 +40,9 @@ func atira(quantidadedebala):
 		instancia.spawnRot = pivo.global_rotation + randf_range(-0.1, 0.1)
 		instancia.spawnPos += Vector2(randf_range(0, 20), 0).rotated(instancia.spawnRot)
 		mundo.add_child.call_deferred(instancia)
-	print(quantidadedebala)
-	print(get_node("/root/mundo/player").qntmunicao)
 	get_node("/root/mundo/player").qntmunicao -= 1
 	if !quantidadedebala:
-		print(quantidadedebala)
+		
 		destruirarma()
 
 func destruirarma():

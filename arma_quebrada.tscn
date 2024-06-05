@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://bebyn0hvwu3qx"]
 
-[ext_resource type="Script" path="res://arma_quebrada.gd" id="1_arqkh"]
+[ext_resource type="Script" path="res://spripts/arma_quebrada.gd" id="1_0n722"]
 [ext_resource type="Texture2D" uid="uid://cpnwssmrv5nb5" path="res://sprits/Shotgun.png" id="2_iqdjb"]
 
 [node name="arma quebrada" type="CharacterBody2D"]
-script = ExtResource("1_arqkh")
+script = ExtResource("1_0n722")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_iqdjb")
