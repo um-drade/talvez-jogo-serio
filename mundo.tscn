@@ -6,23 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dfs33ni4fif80" path="res://boing.tscn" id="3_2ix5g"]
 [ext_resource type="Texture2D" uid="uid://m3hp07eiwlel" path="res://sprits/2d_lights_and_shadows_neutral_point_light.webp" id="4_6vd56"]
 
-[sub_resource type="Curve" id="Curve_2g8ln"]
-_data = [Vector2(0.313187, 0.32967), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Curve" id="Curve_c1api"]
-_data = [Vector2(0, 0.417582), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_4nbv3"]
-_data = [Vector2(0.615385, 0.824176), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_xy5ol"]
-curve_x = SubResource("Curve_2g8ln")
-curve_y = SubResource("Curve_c1api")
-curve_z = SubResource("Curve_4nbv3")
-
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_c7shy"]
 resource_name = "meufe"
 scenes/1/scene = ExtResource("3_2ix5g")
@@ -47,12 +30,24 @@ size = Vector2(180, 600)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_loj63"]
 size = Vector2(360, 180)
 
-[node name="mundo" type="Node2D"]
+[sub_resource type="Curve" id="Curve_2g8ln"]
+_data = [Vector2(0.313187, 0.32967), 0.0, 0.0, 0, 0]
+point_count = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(576, 325.5)
-scale = Vector2(4.5, 651)
-texture = SubResource("CurveXYZTexture_xy5ol")
+[sub_resource type="Curve" id="Curve_c1api"]
+_data = [Vector2(0, 0.417582), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_4nbv3"]
+_data = [Vector2(0.615385, 0.824176), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_xy5ol"]
+curve_x = SubResource("Curve_2g8ln")
+curve_y = SubResource("Curve_c1api")
+curve_z = SubResource("Curve_4nbv3")
+
+[node name="mundo" type="Node2D"]
 
 [node name="tilemap 16" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_yjma6")
@@ -71,6 +66,7 @@ position = Vector2(576, 143)
 position = Vector2(578, 143)
 scale = Vector2(2.715, 2.715)
 energy = 0.1
+range_layer_min = -1
 shadow_enabled = true
 texture = ExtResource("4_6vd56")
 texture_scale = 1.7
@@ -95,6 +91,20 @@ position = Vector2(0, -450)
 shape = SubResource("RectangleShape2D_loj63")
 action = "atira"
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+z_index = -90
+position = Vector2(180, 390)
+scale = Vector2(1.40625, 780)
+texture = SubResource("CurveXYZTexture_xy5ol")
+
+[connection signal="body_entered" from="tilemap 16/boing" to="tilemap 16/boing" method="_on_body_entered"]
+[connection signal="body_entered" from="tilemap 16/municao" to="tilemap 16/municao" method="_on_body_entered"]
+[connection signal="body_entered" from="tilemap 16/@Area2D@22617" to="tilemap 16/@Area2D@22617" method="_on_body_entered"]
+[connection signal="body_entered" from="tilemap 16/@Area2D@22618" to="tilemap 16/@Area2D@22618" method="_on_body_entered"]
+[connection signal="body_entered" from="tilemap 16/@Area2D@22619" to="tilemap 16/@Area2D@22619" method="_on_body_entered"]
 [connection signal="pressed" from="player/esquerda" to="player" method="_on_touch_screen_button_2_pressed"]
 [connection signal="released" from="player/esquerda" to="player" method="_on_touch_screen_button_2_released"]
 [connection signal="pressed" from="player/direita" to="player" method="_on_touch_screen_button_3_pressed"]
