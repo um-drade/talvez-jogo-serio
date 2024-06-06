@@ -29,20 +29,20 @@ func _physics_process(delta):
 		$"pivo da arma/Marker2D".position.y = -4
 
 func _input(event):
-	var playerammo = get_node("/root/mundo/player").qntmunicao
 	if event.is_action_pressed("atira"):
-		atira(playerammo)
+		atira()
 
-func atira(quantidadedebala):
-	for i in range(5):
-		var instancia = bala.instantiate()
-		instancia.spawnPos = saidabala.global_position
-		instancia.spawnRot = pivo.global_rotation + randf_range(-0.1, 0.1)
-		instancia.spawnPos += Vector2(randf_range(0, 20), 0).rotated(instancia.spawnRot)
-		mundo.add_child.call_deferred(instancia)
+func atira():
+	if get_node("/root/mundo/player").qntmunicao:
+		for i in range(5):
+			var instancia = bala.instantiate()
+			instancia.spawnPos = saidabala.global_position
+			instancia.spawnRot = pivo.global_rotation + randf_range(-0.1, 0.1)
+			instancia.spawnPos += Vector2(randf_range(0, 20), 0).rotated(instancia.spawnRot)
+			mundo.add_child.call_deferred(instancia)
 	get_node("/root/mundo/player").qntmunicao -= 1
-	if !quantidadedebala:
-		
+	print(get_node("/root/mundo/player").qntmunicao)
+	if !get_node("/root/mundo/player").qntmunicao:
 		destruirarma()
 
 func destruirarma():

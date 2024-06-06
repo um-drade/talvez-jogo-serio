@@ -102,9 +102,9 @@ texture = SubResource("CurveXYZTexture_xy5ol")
 
 [connection signal="body_entered" from="tilemap 16/boing" to="tilemap 16/boing" method="_on_body_entered"]
 [connection signal="body_entered" from="tilemap 16/municao" to="tilemap 16/municao" method="_on_body_entered"]
-[connection signal="body_entered" from="tilemap 16/@Area2D@22617" to="tilemap 16/@Area2D@22617" method="_on_body_entered"]
-[connection signal="body_entered" from="tilemap 16/@Area2D@22618" to="tilemap 16/@Area2D@22618" method="_on_body_entered"]
-[connection signal="body_entered" from="tilemap 16/@Area2D@22619" to="tilemap 16/@Area2D@22619" method="_on_body_entered"]
+[connection signal="body_entered" from="tilemap 16/@Area2D@35358" to="tilemap 16/@Area2D@35358" method="_on_body_entered"]
+[connection signal="body_entered" from="tilemap 16/@Area2D@35359" to="tilemap 16/@Area2D@35359" method="_on_body_entered"]
+[connection signal="body_entered" from="tilemap 16/@Area2D@35360" to="tilemap 16/@Area2D@35360" method="_on_body_entered"]
 [connection signal="pressed" from="player/esquerda" to="player" method="_on_touch_screen_button_2_pressed"]
 [connection signal="released" from="player/esquerda" to="player" method="_on_touch_screen_button_2_released"]
 [connection signal="pressed" from="player/direita" to="player" method="_on_touch_screen_button_3_pressed"]
