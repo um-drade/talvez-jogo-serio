@@ -23,9 +23,11 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
+	
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED
+
 
 	if velocity.x:
 		if !direction:
@@ -88,23 +90,44 @@ func gerararma():
 	self.add_child.call_deferred(instancia)
 
 
-func _on_touch_screen_button_2_pressed():
-	Input.action_press("ui_left")
 
-func _on_touch_screen_button_2_released():
-	Input.action_release("ui_left")
+#func _on_touch_screen_button_2_pressed():
+	#Input.action_press("ui_left")
+#
+#func _on_touch_screen_button_2_released():
+	#Input.action_release("ui_left")
+#
+#func _on_touch_screen_button_3_pressed():
+	#Input.action_press("ui_right")
+#
+#func _on_touch_screen_button_3_released():
+	#Input.action_release("ui_right")
+#
+#func _on_touch_screen_button_pressed():
+	#Input.action_press("atira")
+#
+#func _on_touch_screen_button_released():
+	#Input.action_release("atira")
 
-func _on_touch_screen_button_3_pressed():
-	Input.action_press("ui_right")
+func _ready():
+	set_process_input(true)
 
-func _on_touch_screen_button_3_released():
-	Input.action_release("ui_right")
+func _input(event):
+	if event is InputEventScreenDrag:
+		if event.position.x > 180:
+			Input.action_release("ui_left")
+			Input.action_press("ui_right")
+		else:
+			Input.action_release("ui_right")
+			Input.action_press("ui_left")
+	if event is InputEventScreenTouch:
+		if event.position.x > 180:
+			Input.action_press("ui_right")
+		else:
+			Input.action_press("ui_left")
+		if event.is_released():
+			Input.action_release("ui_right")
+			Input.action_release("ui_left")
 
-func _on_touch_screen_button_pressed():
-	Input.action_press("atira")
-
-func _on_touch_screen_button_released():
-	Input.action_release("atira")
-
-
-
+func fazermovimentotouch(event):
+	pass

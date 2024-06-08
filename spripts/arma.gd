@@ -41,7 +41,6 @@ func atira():
 			instancia.spawnPos += Vector2(randf_range(0, 20), 0).rotated(instancia.spawnRot)
 			mundo.add_child.call_deferred(instancia)
 	get_node("/root/mundo/player").qntmunicao -= 1
-	print(get_node("/root/mundo/player").qntmunicao)
 	if !get_node("/root/mundo/player").qntmunicao:
 		destruirarma()
 

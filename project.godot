@@ -63,6 +63,10 @@ atira={
 "deadzone": 0.5,
 "events": [null]
 }
+telatocada={
+"deadzone": 0.5,
+"events": []
+}
 
 [input_devices]
 

@@ -6,5 +6,4 @@ func _on_body_entered(body):
 		if !body.qntmunicao:
 			body.gerararma()
 		body.qntmunicao += 1
-		print("newammo:", body.qntmunicao)
 		queue_free()
